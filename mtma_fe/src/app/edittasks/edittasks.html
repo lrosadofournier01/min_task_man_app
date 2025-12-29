@@ -1,0 +1,33 @@
+<div>
+    <h1>Edit Task</h1>
+    @if (taskForm) {
+        <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" formControlName="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="due_date" class="form-label">Due Date</label>
+                <input type="datetime-local" class="form-control" id="due_date" formControlName="due_date">
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select formControlName="status" required>
+                    <!-- Loop through the status enum and show names-->
+                    @if(statuses$ | async; as statuses) {
+                        @for(status of statuses; track status.id) {
+                            <option>{{status.name}}</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Edit Task</button>
+            </div>
+        </form>
+    }
+</div>

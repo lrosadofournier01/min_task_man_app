@@ -1,0 +1,19 @@
+<button class="btn btn-primary" (click)="clickLogOut()">Log Out</button>
+<h1>Your Tasks:</h1>
+@if(tasks$ | async; as tasks) {
+    @for (task of tasks ; track task.title) {
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ task.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ task.status }} | Due {{ task.due_date }}</h6>
+          <p class="card-text">{{ task.description }}</p>
+          <button class="btn btn-success" routerLink="/tasks/edit/{{ task.id }}">Edit</button> | 
+          <button class="btn btn-danger" (click)="deleteTask(task.id)">Delete</button>
+        </div>
+      </div>
+    }
+} @else {
+    <p>There are currently no tasks! Please click here to make one:</p>
+}
+
+<button class="btn btn-primary" routerLink="/tasks/new">Create Task</button>

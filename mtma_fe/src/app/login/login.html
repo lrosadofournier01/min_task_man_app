@@ -1,0 +1,18 @@
+<div>
+    <h1>Welcome to MTMA!</h1>
+    <h3>Please Log In</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" formControlName="email_address" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password" required>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Log In</button> | 
+            <button class="btn btn-primary" routerLink="signup">Sign Up</button>
+        </div>
+    </form>
+</div>
